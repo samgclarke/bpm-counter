@@ -1,0 +1,71 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <p>BPM Counter</p>
+
+    <p>Output: <span id="output"></span> BPM</p>
+    <p><button id="reset" onclick="reset()">Reset</button></p>
+
+    <script>
+      var tally = [];
+      var timing = {start: undefined, end: undefined};
+      document.addEventListener("keydown", keyDowner, false);
+
+      function reset(e) {
+        console.log('reset', e);
+        tally = [];
+        timing.start = undefined;
+        timing.end = undefined;
+        // remove focus
+        document.getElementById("reset").blur();
+        document.getElementById("output").innerHTML = '';
+      };
+
+      function keyDowner(e) {
+        var bpm, avg, sum = 0;
+
+        if (!timing.start) {
+          timing.start = e.timeStamp;
+        } 
+        else if (timing.start && !timing.end) {
+          timing.end = e.timeStamp
+        }
+        else if (timing.start && timing.end) {
+          timing.start = timing.end;
+          timing.end = e.timeStamp;
+        }
+        bpm = 60000 / (timing.end - timing.start);
+        
+        if (bpm) {
+          tally.push(bpm);
+
+          tally.forEach( function (el, i) {
+            sum += el;
+          });
+
+          avg = Math.round(sum / tally.length);
+        
+          if (avg) {
+            document.getElementById("output").innerHTML = avg;
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
