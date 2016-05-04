@@ -43,13 +43,14 @@
         if (!timing.start) {
           timing.start = e.timeStamp;
         } 
-        else if (timing.start && !timing.end) {
+        else if (!timing.end) {
           timing.end = e.timeStamp
         }
         else if (timing.start && timing.end) {
           timing.start = timing.end;
           timing.end = e.timeStamp;
         }
+
         bpm = 60000 / (timing.end - timing.start);
         
         if (bpm) {
@@ -63,7 +64,7 @@
         
           if (avg) {
             document.getElementById("output").innerHTML = avg;
-          }
+          };
         }
       };
     </script>
