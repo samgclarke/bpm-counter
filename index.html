@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <!--[if lt IE 8]>
@@ -20,53 +20,8 @@
     <p>BPM Counter</p>
 
     <p>Output: <span id="output"></span> BPM</p>
-    <p><button id="reset" onclick="reset()">Reset</button></p>
+    <p><button id="reset" onclick="reset(this.id)">Reset</button></p>
 
-    <script>
-      var tally = [];
-      var timing = {start: undefined, end: undefined};
-      document.addEventListener("keydown", keyDowner, false);
-
-      function reset(e) {
-        console.log('reset', e);
-        tally = [];
-        timing.start = undefined;
-        timing.end = undefined;
-        // remove focus
-        document.getElementById("reset").blur();
-        document.getElementById("output").innerHTML = '';
-      };
-
-      function keyDowner(e) {
-        var bpm, avg, sum = 0;
-
-        if (!timing.start) {
-          timing.start = e.timeStamp;
-        } 
-        else if (!timing.end) {
-          timing.end = e.timeStamp
-        }
-        else if (timing.start && timing.end) {
-          timing.start = timing.end;
-          timing.end = e.timeStamp;
-        }
-
-        bpm = 60000 / (timing.end - timing.start);
-        
-        if (bpm) {
-          tally.push(bpm);
-
-          tally.forEach( function (el, i) {
-            sum += el;
-          });
-
-          avg = Math.round(sum / tally.length);
-        
-          if (avg) {
-            document.getElementById("output").innerHTML = avg;
-          };
-        }
-      };
-    </script>
+    <script type="application/javascript" src="js/main.js"></script>
   </body>
 </html>
