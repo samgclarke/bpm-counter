@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <nav>
+    </nav>
+    
+    <main>
+      <h1>BPM Counter</h1>
+      <div class="display">
+        <div class="output-wrapper">
+          <p id="output">waiting...</p>
+        </div>
+        <div>
+          <span class="big-button no-select" onclick="keyDowner()">TAP</span><span class="big-button pale no-select" id="reset" onclick="reset(this.id)">RESET</span>
+        </div>
+      </div>
+      <div class="info">
+        <p><strong>Genre:</strong> <span id="genre">waiting...</span></p>
+      </div>
+    </main>
+
+    <script type="application/javascript" src="js/main.js"></script>
+  </body>
+</html>
