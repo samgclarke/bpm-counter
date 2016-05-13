@@ -21,7 +21,8 @@ function reset(elementId) {
   timing.end = undefined;
   // remove focus
   document.getElementById(elementId).blur();
-  document.getElementById("output").innerHTML = '';
+  document.getElementById("output").innerHTML = 'waiting...';
+  document.getElementById("genre").innerHTML = 'waiting...';
 };
 
 function keyDowner(e) {
