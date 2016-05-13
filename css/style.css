@@ -56,6 +56,8 @@ main, .inner-nav {
 
 .inner-nav a {
 	float: right;
+	padding-top: 5px;
+	padding-right: 5px;
 }
 h1.title {
 	margin-top: 30px;
