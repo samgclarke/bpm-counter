@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BPM Counter</title>
-    <meta name="description" content="">
+    <title>BPM Counter - Just Tap</title>
+    <meta name="description" content="Online BPM Counter">
+    <meta name="keywords" content="BPM Counter, BPM, DJ, Music">
+    <meta name="author" content="Sam G. Clarke">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -18,11 +20,16 @@
     <![endif]-->
 
     <nav>
+      <div class="inner-nav">
+        <a href="#" id="root-link" class="" onclick="showRoot()">Home</a>
+        <a href="#" id="about-link" class="" onclick="showAbout()">About</a>
+      </div>
     </nav>
+
+    <h1 class="title">BPM Counter</h1>
     
-    <main>
-      <h1>BPM Counter</h1>
-      <div class="display">
+    <main id="root">
+      <div id="main-content" class="display">
         <div class="output-wrapper">
           <p id="output">waiting...</p>
         </div>
@@ -32,6 +39,13 @@
       </div>
       <div class="info">
         <p><strong>Genre:</strong> <span id="genre">waiting...</span></p>
+      </div>
+    </main>
+
+    <main id="about">
+      <div id="main-content" class="display">
+        <h2>About BPM Counter</h2>
+        <p class="text-left">BPM Counter is a an online tool for quickly determining the Beats Per Minute of a piece of music.</p>
       </div>
     </main>
 

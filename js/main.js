@@ -63,3 +63,29 @@ function keyDowner(e) {
     };
   }
 };
+
+function showAbout() {
+  console.log('show about');
+  var mainContent = document.getElementById("root");
+  var aboutContent = document.getElementById("about");
+  var rootLink = document.getElementById("root-link");
+  var aboutLink = document.getElementById("about-link");
+  mainContent.className = "display-none";
+  aboutContent.className = "";
+  rootLink.className = "";
+  aboutLink.className = "display-none";
+};
+
+function showRoot() {
+  console.log('show home');
+  var mainContent = document.getElementById("root");
+  var aboutContent = document.getElementById("about");
+  var rootLink = document.getElementById("root-link");
+  var aboutLink = document.getElementById("about-link");
+  mainContent.className = "";
+  aboutContent.className = "display-none";
+  rootLink.className = "display-none";
+  aboutLink.className = "";
+};
+
+showRoot();

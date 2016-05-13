@@ -4,6 +4,16 @@
   font-family: Lato;
 }
 
+/* links */
+a:link, a:visited, a:hover {
+	color: white;
+	font-size: 1.5em;
+	text-decoration: none;
+}
+a:hover {
+	border-bottom: solid;
+}
+
 .no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -32,13 +42,32 @@ nav {
 	height: 50px;
 	width: 100%;
 }
+main, h1.title {
+	color: white;
+  max-width: 600px;
+  margin: 0px auto;
+}
+main, .inner-nav {
+	max-width: 600px;
+	margin: 0px auto;
+	width: 80%;
+	min-width: 220px;
+}
+
+.inner-nav a {
+	float: right;
+}
+h1.title {
+	margin-top: 30px;
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
 
 main {
-	color: white;
-  margin: 30px auto;
+  margin-top: 30px;
   text-align: center;
-  width: 80%;
-  max-width: 600px;
 }
 .display, .info {
 	padding: 20px;
@@ -85,4 +114,8 @@ p#output {
 .pale {
 	background: #F8BBD0;
 	color: #E91E63;
+}
+
+.display-none {
+	display: none;
 }
