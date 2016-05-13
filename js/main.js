@@ -1,8 +1,8 @@
-var tally = [];
-var timing = {start: undefined, end: undefined};
-document.addEventListener("keydown", keyDowner, false);
-
-var genres = {
+/* globals */
+data = new Object();
+data.tally = [];
+data.timing = {start: undefined, end: undefined};
+data.genres = {
   80: 'Reggae',
   90: 'Hip Hop',
   100: 'House',
@@ -14,78 +14,76 @@ var genres = {
   170: 'Drum & Bass'
 }
 
+/* INIT */
+init();
+
+/* functions */
+function init() {
+  document.addEventListener("keydown", tap, false);
+  changeToView('root');
+};
+
+/* ROUTER */
+function changeToView(toView) {
+  var fromView = (toView === 'root') ? 'about' : 'root';
+  
+  html = new Object();
+  html.hideContent = document.getElementById(fromView);
+  html.hideEl = document.getElementById(toView + '-link');
+  html.showContent = document.getElementById(toView);
+  html.showEl = document.getElementById(fromView + '-link');
+
+  html.hideContent.className = "display-none";
+  html.hideEl.className = "display-none";
+  html.showContent.className = "";
+  html.showEl.className = "";
+};
+
+/* EVENT HANDLING */
 function reset(elementId) {
-  console.log('reset', elementId);
-  tally = [];
-  timing.start = undefined;
-  timing.end = undefined;
+  data.tally = [];
+  data.timing.start = undefined;
+  data.timing.end = undefined;
   // remove focus
   document.getElementById(elementId).blur();
   document.getElementById("output").innerHTML = 'waiting...';
   document.getElementById("genre").innerHTML = 'waiting...';
 };
-
-function keyDowner(e) {
-  var timestamp, bpm, avg, sum = 0;
+function tap(e) {
+  var timestamp, bpm, avg, round, genre, sum = 0;
 
   timestamp = (e) ? e.timeStamp : new Date();
 
-  if (!timing.start) {
-    timing.start = timestamp;
+  if (!data.timing.start) {
+    data.timing.start = timestamp;
   } 
-  else if (!timing.end) {
-    timing.end = timestamp;
+  else if (!data.timing.end) {
+    data.timing.end = timestamp;
   }
-  else if (timing.start && timing.end) {
-    timing.start = timing.end;
-    timing.end = timestamp;
+  else if (data.timing.start && data.timing.end) {
+    data.timing.start = data.timing.end;
+    data.timing.end = timestamp;
   }
   // calculate bpm
-  bpm = 60000 / (timing.end - timing.start);
+  bpm = 60000 / (data.timing.end - data.timing.start);
   
   if (bpm) {
     // push bpms to tall list
-    tally.push(bpm);
+    data.tally.push(bpm);
     // calculate sum of bpms
-    tally.forEach( function (el, i) {
+    data.tally.forEach( function (el, i) {
       sum += el;
     });
     // average all bpms
-    avg = Math.round(sum / tally.length);
+    avg = Math.round(sum / data.tally.length);
     if (avg) {
       document.getElementById("output").innerHTML = avg + ' bpm';
 
       // get genre
-      var round = Math.floor(avg / 10) * 10;
-      var genre = genres[round];
-      console.log('round, genre', [round, genre]);
-      document.getElementById("genre").innerHTML = genre;
+      round = Math.floor(avg / 10) * 10;
+      genre = data.genres[round];
+      document.getElementById("genre").innerHTML = genre || 'Not sure...';
     };
   }
 };
 
-function showAbout() {
-  console.log('show about');
-  var mainContent = document.getElementById("root");
-  var aboutContent = document.getElementById("about");
-  var rootLink = document.getElementById("root-link");
-  var aboutLink = document.getElementById("about-link");
-  mainContent.className = "display-none";
-  aboutContent.className = "";
-  rootLink.className = "";
-  aboutLink.className = "display-none";
-};
-
-function showRoot() {
-  console.log('show home');
-  var mainContent = document.getElementById("root");
-  var aboutContent = document.getElementById("about");
-  var rootLink = document.getElementById("root-link");
-  var aboutLink = document.getElementById("about-link");
-  mainContent.className = "";
-  aboutContent.className = "display-none";
-  rootLink.className = "display-none";
-  aboutLink.className = "";
-};
-
-showRoot();

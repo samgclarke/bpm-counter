@@ -21,8 +21,8 @@
 
     <nav>
       <div class="inner-nav">
-        <a href="#" id="root-link" class="" onclick="showRoot()">Home</a>
-        <a href="#" id="about-link" class="" onclick="showAbout()">About</a>
+        <a href="#" id="root-link" class="" onclick="changeToView('root')">Home</a>
+        <a href="#" id="about-link" class="" onclick="changeToView('about')">About</a>
       </div>
     </nav>
 
@@ -34,7 +34,7 @@
           <p id="output">waiting...</p>
         </div>
         <div>
-          <span class="big-button no-select" onclick="keyDowner()">TAP</span><span class="big-button pale no-select" id="reset" onclick="reset(this.id)">RESET</span>
+          <span class="big-button no-select" onclick="tap()">TAP</span><span class="big-button pale no-select" id="reset" onclick="reset(this.id)">RESET</span>
         </div>
       </div>
       <div class="info">
