@@ -26,7 +26,7 @@ function init() {
 /* ROUTER */
 function changeToView(toView) {
   var fromView = (toView === 'root') ? 'about' : 'root';
-  
+
   html = new Object();
   html.hideContent = document.getElementById(fromView);
   html.hideEl = document.getElementById(toView + '-link');
@@ -59,6 +59,8 @@ function tap(e) {
   } 
   else if (!data.timing.end) {
     data.timing.end = timestamp;
+    showInterstitial();
+    return true;
   }
   else if (data.timing.start && data.timing.end) {
     data.timing.start = data.timing.end;
