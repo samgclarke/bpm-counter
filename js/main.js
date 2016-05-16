@@ -1,5 +1,7 @@
 /* globals */
 var data = new Object();
+var views = new Array();
+
 data.tally = [];
 data.timing = {start: undefined, end: undefined};
 data.genres = {
@@ -12,21 +14,18 @@ data.genres = {
   140: 'Trance',
   160: 'Drum & Bass',
   170: 'Drum & Bass'
-}
+};
 
-var views = [
+views = [
   {id: 'root', title: 'Home'},
   {id: 'about', title: 'About'},
 ];
 
 /* INIT */
-init();
-
-/* functions */
-function init() {
+(function init() {
   document.addEventListener("keydown", tap, false);
   changeToView('root');
-};
+})();
 
 
 /* ROUTER */
@@ -56,9 +55,7 @@ function reset(elementId) {
   document.getElementById("genre").innerHTML = 'waiting...';
 };
 function tap(e) {
-  console.log('tap');
   var timestamp, bpm, avg, round, genre, sum = 0;
-
   timestamp = (e) ? e.timeStamp : new Date();
 
   if (!data.timing.start) {
@@ -86,7 +83,6 @@ function tap(e) {
     avg = Math.round(sum / data.tally.length);
     if (avg) {
       document.getElementById("output").innerHTML = avg + ' bpm';
-
       // get genre
       round = Math.floor(avg / 10) * 10;
       genre = data.genres[round];
