@@ -1,5 +1,5 @@
 /* globals */
-data = new Object();
+var data = new Object();
 data.tally = [];
 data.timing = {start: undefined, end: undefined};
 data.genres = {
@@ -14,6 +14,11 @@ data.genres = {
   170: 'Drum & Bass'
 }
 
+var views = [
+  {id: 'root', title: 'Home'},
+  {id: 'about', title: 'About'},
+];
+
 /* INIT */
 init();
 
@@ -23,20 +28,21 @@ function init() {
   changeToView('root');
 };
 
+
 /* ROUTER */
 function changeToView(toView) {
-  var fromView = (toView === 'root') ? 'about' : 'root';
-
-  html = new Object();
-  html.hideContent = document.getElementById(fromView);
-  html.hideEl = document.getElementById(toView + '-link');
-  html.showContent = document.getElementById(toView);
-  html.showEl = document.getElementById(fromView + '-link');
-
-  html.hideContent.className = "display-none";
-  html.hideEl.className = "display-none";
-  html.showContent.className = "";
-  html.showEl.className = "";
+  // iterate views
+  views.forEach( function (view) {
+    if(view.id === toView) {
+      // to View
+      document.getElementById(view.id + '-link').className = "display-none";
+      document.getElementById(view.id).className = "";
+    } else {
+      // other views
+      document.getElementById(view.id).className = "display-none";
+      document.getElementById(view.id + '-link').className = "";
+    }
+  });
 };
 
 /* EVENT HANDLING */
@@ -50,17 +56,17 @@ function reset(elementId) {
   document.getElementById("genre").innerHTML = 'waiting...';
 };
 function tap(e) {
+  console.log('tap');
   var timestamp, bpm, avg, round, genre, sum = 0;
 
   timestamp = (e) ? e.timeStamp : new Date();
 
   if (!data.timing.start) {
+    showInterstitial();
     data.timing.start = timestamp;
   } 
   else if (!data.timing.end) {
     data.timing.end = timestamp;
-    showInterstitial();
-    return true;
   }
   else if (data.timing.start && data.timing.end) {
     data.timing.start = data.timing.end;
@@ -88,4 +94,8 @@ function tap(e) {
     };
   }
 };
+function showInterstitial() {
+  document.getElementById("output").innerHTML = 'tap again!';
+  document.getElementById("genre").innerHTML = 'awaiting second tap...';
+}
 
