@@ -5,15 +5,18 @@ var views = new Array();
 data.tally = [];
 data.timing = {start: undefined, end: undefined};
 data.genres = {
-  80: 'Reggae',
+  70: 'Dub/Reggae',
+  80: 'Dub/Reggae',
   90: 'Hip Hop',
-  100: 'House',
-  110: 'House',
-  120: 'Breaks',
-  130: 'Breaks',
+  100: 'Chill',
+  110: 'Breaks',
+  120: 'Deep House',
+  130: 'House',
   140: 'Trance',
+  150: 'Jungle',
   160: 'Drum & Bass',
-  170: 'Drum & Bass'
+  170: 'Drum & Bass',
+  180: 'Gabber'
 };
 
 views = [
